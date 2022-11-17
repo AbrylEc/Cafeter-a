@@ -101,11 +101,16 @@
 
 	    </p>
         <p class="m-0 mbt">
-        	<a href="{%url 'sample'%}" class="link">Política de privacidad</a> ·
-        	<a href="{%url 'sample'%}" class="link">Aviso legal</a> ·
-        	<a href="{%url 'sample'%}" class="link">Cookies</a>
-		</p>
-        <p class="m-0 mbt1">&copy; La Caffettiera 2018</p>
+        
+          {% load pages_extras %} 
+          <!--Vamos a tomar el return del template tag y tranformarlo a una lista-->
+          {%get_pages_list as pages_list%}
+          {%for page in pages_list%}
+            <a href="{%url 'sample' page.id %}" class="link">{{page.title}}</a>{%if not forloop.last%} . {%endif%}
+          
+          {%endfor%}
+    </p>
+        <p class="m-0 mbt1">&copy; La Caffettiera 2022</p>
       </div>
 	</footer>
 
